@@ -12,25 +12,48 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-# Problem 4.1
+# Laden und Aufbereiten des Datensets
 
 ```{r}
 data <- read.csv("happiness.csv")
 
-happiness <- cbind(data["happy"], data["workstat"], data["prestige"], data["divorce"], data["widowed"], data["educ"], data["babies"], data["preteen"], data["teens"], data["income"], data["region"], data["tvhours"], data["black"], data["female"], data["unem10"])
+orig <- na.omit(cbind(data["happy"], data["workstat"], data["prestige"], data["divorce"], data["educ"], data["babies"], data["preteen"], data["teens"], data["income"], data["region"], data["tvhours"], data["black"], data["female"]))
 
-
-h <- na.omit(cbind(data["happy"], data["workstat"], data["prestige"], data["divorce"], data["educ"], data["babies"], data["preteen"], data["teens"], data["income"], data["region"], data["tvhours"], data["black"], data["female"], data["unem10"]))
-
+h <- na.omit(cbind(data["happy"], data["workstat"], data["prestige"], data["divorce"], data["educ"], data["babies"], data["preteen"], data["teens"], data["income"], data["region"], data["tvhours"], data["black"], data["female"]))
 
 h$happy <- as.numeric(h$happy)
+h$divorce <- ifelse(h$divorce=="yes", 1, 0)
 
+
+h$income <- as.character(h$income)
+h$income[h$income == "lt $1000"] <- 1
+h$income[h$income == "$1000 to 2999"] <- 2
+h$income[h$income == "$3000 to 3999"] <- 3
+h$income[h$income == "$4000 to 4999"] <- 4
+h$income[h$income == "$5000 to 5999"] <- 5
+h$income[h$income == "$6000 to 6999"] <- 6
+h$income[h$income == "$7000 to 7999"] <- 7
+h$income[h$income == "$8000 to 9999"] <- 8
+h$income[h$income == "$10000 - 14999"] <- 9
+h$income[h$income == "$15000 - 19999"] <- 10
+h$income[h$income == "$20000 - 24999"] <- 11
+h$income[h$income == "$25000 or more"] <- 12
+h$income <- as.integer(h$income)
+
+
+  
+
+h$income <- as.numeric(h$income)
 
 plot(h)
-fit <- lm(happy ~ educ + prestige, data = h)
+fit <- lm(happy ~ workstat + prestige + divorce + educ + babies + preteen + teens + income + region + tvhours + black + female, data = h)
 summary(fit)
 ```
 
+
+
+Signifikanz der einzelnen Variablen inkl. Kombinationen
++ t-test überprüfung
 
 
 ```{r}
