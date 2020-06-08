@@ -1,30 +1,60 @@
 ---
-title: "Project"
-author: "Denise Berthold, Katrin Deisl"
-date: "08 Juni 2020"
-output: pdf_document
+title: "Econometrics Project"
+author: "Denise Berthold (01626568), Katrin Deisl (01625727)"
+date: "28.06.2020"
+output: 
+  pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Problem 4.1
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r}
+data <- read.csv("happiness.csv")
 
-```{r cars}
-summary(cars)
+happiness <- cbind(data["happy"], data["workstat"], data["prestige"], data["divorce"], data["widowed"], data["educ"], data["babies"], data["preteen"], data["teens"], data["income"], data["region"], data["tvhours"], data["black"], data["female"], data["unem10"])
+
+
+h <- na.omit(cbind(data["happy"], data["workstat"], data["prestige"], data["divorce"], data["educ"], data["babies"], data["preteen"], data["teens"], data["income"], data["region"], data["tvhours"], data["black"], data["female"], data["unem10"]))
+
+
+h$happy <- as.numeric(h$happy)
+
+
+plot(h)
+fit <- lm(happy ~ educ + prestige, data = h)
+summary(fit)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
