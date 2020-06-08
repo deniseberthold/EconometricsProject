@@ -15,38 +15,8 @@ knitr::opts_chunk$set(echo = TRUE)
 # Laden und Aufbereiten des Datensets
 
 ```{r}
-data <- read.csv("happiness.csv")
-
-orig <- na.omit(cbind(data["happy"], data["workstat"], data["prestige"], data["divorce"], data["educ"], data["babies"], data["preteen"], data["teens"], data["income"], data["region"], data["tvhours"], data["black"], data["female"]))
-
-h <- na.omit(cbind(data["happy"], data["workstat"], data["prestige"], data["divorce"], data["educ"], data["babies"], data["preteen"], data["teens"], data["income"], data["region"], data["tvhours"], data["black"], data["female"]))
-
-h$happy <- as.numeric(h$happy)
-h$divorce <- ifelse(h$divorce=="yes", 1, 0)
-
-
-h$income <- as.character(h$income)
-h$income[h$income == "lt $1000"] <- 1
-h$income[h$income == "$1000 to 2999"] <- 2
-h$income[h$income == "$3000 to 3999"] <- 3
-h$income[h$income == "$4000 to 4999"] <- 4
-h$income[h$income == "$5000 to 5999"] <- 5
-h$income[h$income == "$6000 to 6999"] <- 6
-h$income[h$income == "$7000 to 7999"] <- 7
-h$income[h$income == "$8000 to 9999"] <- 8
-h$income[h$income == "$10000 - 14999"] <- 9
-h$income[h$income == "$15000 - 19999"] <- 10
-h$income[h$income == "$20000 - 24999"] <- 11
-h$income[h$income == "$25000 or more"] <- 12
-h$income <- as.integer(h$income)
-
-
-  
-
-h$income <- as.numeric(h$income)
-
-plot(h)
-fit <- lm(happy ~ workstat + prestige + divorce + educ + babies + preteen + teens + income + region + tvhours + black + female, data = h)
+data <- read.csv("wine.csv")
+fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.sugar + chlorides + + free.sulfur.dioxide + total.sulfur.dioxide + density + pH + sulphates + alcohol, data = data)
 summary(fit)
 ```
 
@@ -57,6 +27,9 @@ Signifikanz der einzelnen Variablen inkl. Kombinationen
 
 
 ```{r}
+
+
+
 
 ```
 
