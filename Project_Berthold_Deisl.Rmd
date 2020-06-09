@@ -17,8 +17,6 @@ In der folgenden Ausarbeitung werden verschiedene Regressions-Modelle anhand des
 Die Ausarbeitung widmet sich der Frage, 
 
 
-
-
 # Datensatz
 ## Laden des Datensatzes und Plotten für einen ersten Überblick
 
