@@ -18,7 +18,7 @@ Die Ausarbeitung widmet sich der Frage,
 
 
 # Datensatz
-## Laden des Datensatzes und Plotten fÃ¼r einen ersten Ãœberblick
+## Laden des Datensatzes und Plotten für einen ersten Überblick
 
 ```{r}
 data <- read.csv("winequality-red.csv")
@@ -26,33 +26,34 @@ plot(data)
 ```
 
 ## Beschreibung des Datensatzes
-Der Datensatz stammt von Kaggle (Quelle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009) und enthÃ¤lt die folgenden beschreibenden Variablen:
+Der Datensatz stammt von Kaggle (Quelle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009) und enthält die folgenden beschreibenden Variablen:
 \begin{itemize}
   \item \textbf{fixed.acidity}\\
-  Diese Variable beschreibt den Anteil der nichtflÃ¼chtigen SÃ¤uren im Wein. Diese bleiben im Wein und verdampfen nicht. Der GroÃŸteil der im Wein enthaltenen SÃ¤uren sind nichtflÃ¼chtige SÃ¤uren.
+  Diese Variable beschreibt den Anteil der nichtflüchtigen Säuren im Wein. Diese bleiben im Wein und verdampfen nicht. Der Großteil der im Wein enthaltenen Säuren sind nichtflüchtige Säuren.
   \item \textbf{volatile.acidity}\\
-  Der Anteil an flÃ¼chtigen SÃ¤uren (EssigsÃ¤uren) im Wein. Bei zu hohem Anteil kann der Geschmack beeintrÃ¤chtigt werden.
+  Der Anteil an flüchtigen Säuren (Essigsäuren) im Wein. Bei zu hohem Anteil kann der Geschmack beeinträchtigt werden.
   \item \textbf{citric.acid}\\
-  Gehalt an ZitronensÃ¤ure. Bei kleinen Anteilen kann diese Frische und Geschmack verleihen.
+  Gehalt an Zitronensäure. Bei kleinen Anteilen kann diese Frische und Geschmack verleihen.
   \item \textbf{residual.sugar}\\
-  Diese Variable enthÃ¤lt die Menge an Zucker, die nach der GÃ¤rung im Wein verbleibt. Die meisten Weine enthalten mehr als ein Gramm Zucker pro Liter. Weine mit mehr als 45 Gramm pro Liter werden als sÃ¼ÃŸ bezeichnet.
+  Diese Variable enthält die Menge an Zucker, die nach der Gärung im Wein verbleibt. Die meisten Weine enthalten mehr als ein Gramm Zucker pro Liter. Weine mit mehr als 45 Gramm pro Liter werden als süß bezeichnet.
   \item \textbf{chlorides}\\
   Der Anteil an Salz im Wein.
   \item \textbf{total.sulfur.dioxide}\\
-  Schwefeldioxide werden dem Wein hinzugefÃ¼gt, um das Wachstum von Bakterien und Wildhefen zu hemmen und die Oxidation des Weines zu verhindern. Ein Teil des Schwefeldioxides bindet sich im Wein, der Ã¼brige Anteil bleibt ungebunden.
+  Schwefeldioxide werden dem Wein hinzugefügt, um das Wachstum von Bakterien und Wildhefen zu hemmen und die Oxidation des Weines zu verhindern. Ein Teil des Schwefeldioxides bindet sich im Wein, der übrige Anteil bleibt ungebunden.
   \item \textbf{free.sulfur.dioxide}\\
   Der nicht gebundene Anteil wird freies Schwefeldioxid genannt. Ab 50 ppm (parts per million) kann man die freien Schwefeldioxide riechen und im Geschmack erkennen.
   \item \textbf{density}\\
   Die Dichte des Weines ist je nach Alkohol- und Zuckeranteil nahe der Dichte von Wasser.
   \item \textbf{pH}\\
-  Der pH-Wert beschreibt, wie sauer oder basisch eine LÃ¶sung ist. Die meisten Weine liegen zwischen drei und vier auf der Skala von 0 bis 14 (0 - sauer; 14 - basisch).
+  Der pH-Wert beschreibt, wie sauer oder basisch eine Lösung ist. Die meisten Weine liegen zwischen drei und vier auf der Skala von 0 bis 14 (0 - sauer; 14 - basisch).
   \item \textbf{sulphates}\\
   Sulfat ist ein Weinzusatz, der zum Schwefeldioxidgas beitragen kann und somit ebenfalls das Wachstum von Bakterien und Wildhefen hemmt.
   \item \textbf{alcohol}\\
   Der Prozentsatz des Alkoholgehalts liegt bei den meisten Weinen zwischen acht und 15 \%.
 \end{itemize}
 
-Diese Variablen haben unterschiedliche EinflÃ¼sse auf die QualitÃ¤t des Weins, welche in einer eigenen abhÃ¤ngigen Variable gespeichert wird. Die Werte liegen zwischen null und zehn.
+Diese Variablen haben unterschiedliche Einflüsse auf die Qualität des Weins, welche in einer eigenen abhängigen Variable gespeichert wird. Die Werte liegen zwischen null und zehn.
+
 
 
 
@@ -63,7 +64,7 @@ Diese Variablen haben unterschiedliche EinflÃ¼sse auf die QualitÃ¤t des Weins, w
 
 
 Signifikanz der einzelnen Variablen inkl. Kombinationen
-+ t-test Ã¼berprÃ¼fung
++ t-test überprüfung
 
 # Regressions-Modelle
 
@@ -82,23 +83,7 @@ summary(fit)
 
 
 
-
-
-
 # Statistische Tests
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
