@@ -12,13 +12,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Einleitung
-
+Ã„Ã„Ã„
 In der folgenden Ausarbeitung werden verschiedene Regressions-Modelle anhand des "winequality-red" Datensatzes erstellt.
 Die Ausarbeitung widmet sich der Frage, 
 
 
 # Datensatz
-## Laden des Datensatzes und Plotten für einen ersten Überblick
+## Laden des Datensatzes und Plotten fÃ¼r einen ersten Ãœberblick
 
 ```{r}
 data <- read.csv("winequality-red.csv")
@@ -29,54 +29,54 @@ plot(data)
 Der Datensatz stammt von Kaggle (Quelle: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009) und enth&auml;lt die folgenden beschreibenden Variablen:
 \begin{itemize}
   \item \textbf{fixed.acidity}\\
-  Diese Variable beschreibt den Anteil der nichtflüchtigen Säuren im Wein. Diese bleiben im Wein und verdampfen nicht. Der Großteil der im Wein enthaltenen Säuren sind nichtflüchtige Säuren.
+  Diese Variable beschreibt den Anteil der nichtflÃ¼chtigen SÃ¤uren im Wein. Diese bleiben im Wein und verdampfen nicht. Der GroÃŸteil der im Wein enthaltenen SÃ¤uren sind nichtflÃ¼chtige SÃ¤uren.
   \item \textbf{volatile.acidity}\\
-  Der Anteil an flüchtigen Säuren (Essigsäuren) im Wein. Bei zu hohem Anteil kann der Geschmack beeinträchtigt werden.
+  Der Anteil an flÃ¼chtigen SÃ¤uren (EssigsÃ¤uren) im Wein. Bei zu hohem Anteil kann der Geschmack beeintrÃ¤chtigt werden.
   \item \textbf{citric.acid}\\
-  Gehalt an Zitronensäure. Bei kleinen Anteilen kann diese Frische und Geschmack verleihen.
+  Gehalt an ZitronensÃ¤ure. Bei kleinen Anteilen kann diese Frische und Geschmack verleihen.
   \item \textbf{residual.sugar}\\
-  Diese Variable enthält die Menge an Zucker, die nach der Gärung im Wein verbleibt. Die meisten Weine enthalten mehr als ein Gramm Zucker pro Liter. Weine mit bis zu 4 Gramm Zucker gelten als trockene Weine. Bei 4 - 9 Gramm Zucker handelt es sich je nach Säuregehalt um trockene oder halbtrockene Weine (je höher der Säuregehalt desto trockener). Bis zu 12 - 18 Gramm handelt es sich um halbtrockene Weine. Liebliche Weine haben einen Zuckergehalt von bis zu 45 Gramm. Weine mit mehr als 45 Gramm pro Liter werden als süß bezeichnet. (https://www.oesterreichwein.at/unser-wein/weintypen/10-edelsuesse-weine/geschmacksrichtungen)
+  Diese Variable enthÃ¤lt die Menge an Zucker, die nach der GÃ¤rung im Wein verbleibt. Die meisten Weine enthalten mehr als ein Gramm Zucker pro Liter. Weine mit bis zu 4 Gramm Zucker gelten als trockene Weine. Bei 4 - 9 Gramm Zucker handelt es sich je nach SÃ¤uregehalt um trockene oder halbtrockene Weine (je hÃ¶her der SÃ¤uregehalt desto trockener). Bis zu 12 - 18 Gramm handelt es sich um halbtrockene Weine. Liebliche Weine haben einen Zuckergehalt von bis zu 45 Gramm. Weine mit mehr als 45 Gramm pro Liter werden als sÃ¼ÃŸ bezeichnet. (https://www.oesterreichwein.at/unser-wein/weintypen/10-edelsuesse-weine/geschmacksrichtungen)
   \item \textbf{chlorides}\\
   Der Anteil an Salz im Wein.
   \item \textbf{total.sulfur.dioxide}\\
-  Schwefeldioxide werden dem Wein hinzugefügt, um das Wachstum von Bakterien und Wildhefen zu hemmen und die Oxidation des Weines zu verhindern. Ein Teil des Schwefeldioxides bindet sich im Wein, der übrige Anteil bleibt ungebunden.
+  Schwefeldioxide werden dem Wein hinzugefÃ¼gt, um das Wachstum von Bakterien und Wildhefen zu hemmen und die Oxidation des Weines zu verhindern. Ein Teil des Schwefeldioxides bindet sich im Wein, der Ã¼brige Anteil bleibt ungebunden.
   \item \textbf{free.sulfur.dioxide}\\
   Der nicht gebundene Anteil wird freies Schwefeldioxid genannt. Ab 50 ppm (parts per million) kann man die freien Schwefeldioxide riechen und im Geschmack erkennen.
   \item \textbf{density}\\
   Die Dichte des Weines ist je nach Alkohol- und Zuckeranteil nahe der Dichte von Wasser.
   \item \textbf{pH}\\
-  Der pH-Wert beschreibt, wie sauer oder basisch eine Lösung ist. Die meisten Weine liegen zwischen drei und vier auf der Skala von 0 bis 14 (0 $-$ sauer; 14 $-$ basisch).
+  Der pH-Wert beschreibt, wie sauer oder basisch eine LÃ¶sung ist. Die meisten Weine liegen zwischen drei und vier auf der Skala von 0 bis 14 (0 $-$ sauer; 14 $-$ basisch).
   \item \textbf{sulphates}\\
   Sulfat ist ein Weinzusatz, der zum Schwefeldioxidgas beitragen kann und somit ebenfalls das Wachstum von Bakterien und Wildhefen hemmt.
   \item \textbf{alcohol}\\
   Der Prozentsatz des Alkoholgehalts liegt bei den meisten Weinen zwischen acht und 15 \%.
 \end{itemize}
 
-Diese Variablen haben unterschiedliche Einflüsse auf die Qualität des Weins, welche in einer eigenen abhängigen Variable gespeichert wird. Die Werte liegen zwischen null und zehn.
+Diese Variablen haben unterschiedliche EinflÃ¼sse auf die QualitÃ¤t des Weins, welche in einer eigenen abhÃ¤ngigen Variable gespeichert wird. Die Werte liegen zwischen null und zehn.
 
-##Vermutungen über den Einfluss der einzelnen Variablen
+##Vermutungen Ã¼ber den Einfluss der einzelnen Variablen
 
 \begin{itemize}
   \item \textbf{fixed.acidity}\\
-  Vorraussichtlich ist ein geringer Säureanteil wünschenswert. Höhere Werte würden in einem zu sauren Wein resultieren und die Qualität negativ beeinflussen.
+  Vorraussichtlich ist ein geringer SÃ¤ureanteil wÃ¼nschenswert. HÃ¶here Werte wÃ¼rden in einem zu sauren Wein resultieren und die QualitÃ¤t negativ beeinflussen.
   \item \textbf{volatile.acidity}\\
-  Da es bei einem zu hohen Anteil an flüchtigen Säuren zu einer Geschmacksbeeinträchtigung kommen kann, vermuten wir einen negativen Einfluss dieser Variable auf die Qualität. 
+  Da es bei einem zu hohen Anteil an flÃ¼chtigen SÃ¤uren zu einer GeschmacksbeeintrÃ¤chtigung kommen kann, vermuten wir einen negativen Einfluss dieser Variable auf die QualitÃ¤t. 
   \item \textbf{citric.acid}\\
-  Bei dieser Variable wir einen zunehmenden negativen Einfluss an, da kleine Mengen als angenehm empfunden werden, bei großen Mengen jedoch der Geschmack beeinträchtigt werden könnte.
+  Bei dieser Variable wir einen zunehmenden negativen Einfluss an, da kleine Mengen als angenehm empfunden werden, bei groÃŸen Mengen jedoch der Geschmack beeintrÃ¤chtigt werden kÃ¶nnte.
   \item \textbf{residual.sugar}\\
-  Da es sich bei verschiedenen Zuckergehältern um unterschiedliche Weinarten (trockener Rotwein, halbtrockener Rotwein, lieblicher Rotwein, süßer Rotwein) handelt, vermuten wir hier keinen direkten Einfluss auf die Qualtität. Stattdessen vermuten wir pro Kategorie Schwankungen in der Qualität.
+  Da es sich bei verschiedenen ZuckergehÃ¤ltern um unterschiedliche Weinarten (trockener Rotwein, halbtrockener Rotwein, lieblicher Rotwein, sÃ¼ÃŸer Rotwein) handelt, vermuten wir hier keinen direkten Einfluss auf die QualtitÃ¤t. Stattdessen vermuten wir pro Kategorie Schwankungen in der QualitÃ¤t.
   \item \textbf{chlorides}\\
-  Hier vermuten wir einen ähnlichen Zusammenhang wie bei der Variable citric acid. Allgemein tendieren wir bei höheren Mengen zu einem negativen Einfluss.
+  Hier vermuten wir einen Ã¤hnlichen Zusammenhang wie bei der Variable citric acid. Allgemein tendieren wir bei hÃ¶heren Mengen zu einem negativen Einfluss.
   \item \textbf{sulfur.dioxide}\\
-  Unserer Vermutung nach wirkt sich der gesamte Anteil an Schwefel und vor allem der Anteil an freien Schwefeldioxiden, negativ auf die Qualität des Weines aus.
+  Unserer Vermutung nach wirkt sich der gesamte Anteil an Schwefel und vor allem der Anteil an freien Schwefeldioxiden, negativ auf die QualitÃ¤t des Weines aus.
   \item \textbf{density}\\
-  Aufgrund unserer geringen Weinkenntniss, können wir uns hier keine Meinung bilden.
+  Aufgrund unserer geringen Weinkenntniss, kÃ¶nnen wir uns hier keine Meinung bilden.
   \item \textbf{pH}\\
-  Je niedriger der pH-Wert, desto saurer der Wein. Je höher desto näher liegt der Wein bei der Skala bei neutral. Wir vermuten, dass ein bestimmter Säuregehalt für eine gute Qualität notwendig ist. Deshalb nehmen wir an, dass der Säuregehalt in einer schmalen Bandbreite liegen muss und Ausreißer in beide Richtungen einen negativen Einfluss haben.
+  Je niedriger der pH-Wert, desto saurer der Wein. Je hÃ¶her desto nÃ¤her liegt der Wein bei der Skala bei neutral. Wir vermuten, dass ein bestimmter SÃ¤uregehalt fÃ¼r eine gute QualitÃ¤t notwendig ist. Deshalb nehmen wir an, dass der SÃ¤uregehalt in einer schmalen Bandbreite liegen muss und AusreiÃŸer in beide Richtungen einen negativen Einfluss haben.
   \item \textbf{sulphates}\\
-  Hier sehen wir den gleichen Zusammenhang wie bei den Schwefeldioxiden, da die Sulfate sehr eng mit den Schwelfeldioxiden in Beziehung stehen. Der Einfluss könnte daher negativ sein.
+  Hier sehen wir den gleichen Zusammenhang wie bei den Schwefeldioxiden, da die Sulfate sehr eng mit den Schwelfeldioxiden in Beziehung stehen. Der Einfluss kÃ¶nnte daher negativ sein.
   \item \textbf{alcohol}\\
-  Ähnlich wie beim pH-Wert sollte auch beim Alkoholgehalt, für eine gute Qualität, der Wert innerhalb einer gewissen Spanne liegen. 
+  Ã„hnlich wie beim pH-Wert sollte auch beim Alkoholgehalt, fÃ¼r eine gute QualitÃ¤t, der Wert innerhalb einer gewissen Spanne liegen. 
 \end{itemize}
 
 
@@ -85,7 +85,7 @@ Diese Variablen haben unterschiedliche Einflüsse auf die Qualität des Weins, wel
 
 
 Signifikanz der einzelnen Variablen inkl. Kombinationen
-+ t-test überprüfung
++ t-test Ã¼berprÃ¼fung
 
 # Regressions-Modelle
 
@@ -97,10 +97,10 @@ fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.su
 summary(fit)
 ```
 
-##Überprüfung der Vermutungen
+##ÃœberprÃ¼fung der Vermutungen
 
 ###fixed.acidity
-  Vorraussichtlich ist ein geringer Säureanteil wünschenswert. Höhere Werte würden in einem zu sauren Wein resultieren und die Qualität negativ beeinflussen.
+  Vorraussichtlich ist ein geringer SÃ¤ureanteil wÃ¼nschenswert. HÃ¶here Werte wÃ¼rden in einem zu sauren Wein resultieren und die QualitÃ¤t negativ beeinflussen.
   
 ```{r}
 coef(summary(fit))[2,]
@@ -111,7 +111,7 @@ summary(fit_fixed.acidity)
 ```
 
 ###volatile.acidity
-  Da es bei einem zu hohen Anteil an flüchtigen Säuren zu einer Geschmacksbeeinträchtigung kommen kann, vermuten wir einen negativen Einfluss dieser Variable auf die Qualität. 
+  Da es bei einem zu hohen Anteil an flÃ¼chtigen SÃ¤uren zu einer GeschmacksbeeintrÃ¤chtigung kommen kann, vermuten wir einen negativen Einfluss dieser Variable auf die QualitÃ¤t. 
   
 ```{r}
 fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.sugar + 
@@ -121,7 +121,7 @@ fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.su
 ```
 
 ###citric.acid
-  Bei dieser Variable wir einen zunehmenden negativen Einfluss an, da kleine Mengen als angenehm empfunden werden, bei großen Mengen jedoch der Geschmack beeinträchtigt werden könnte.
+  Bei dieser Variable wir einen zunehmenden negativen Einfluss an, da kleine Mengen als angenehm empfunden werden, bei groÃŸen Mengen jedoch der Geschmack beeintrÃ¤chtigt werden kÃ¶nnte.
 
 ```{r}
 fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.sugar + 
@@ -132,7 +132,7 @@ fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.su
 
   
 ###residual.sugar
-  Da es sich bei verschiedenen Zuckergehältern um unterschiedliche Weinarten (trockener Rotwein, halbtrockener Rotwein, lieblicher Rotwein, süßer Rotwein) handelt, vermuten wir hier keinen direkten Einfluss auf die Qualtität. Stattdessen vermuten wir pro Kategorie Schwankungen in der Qualität.
+  Da es sich bei verschiedenen ZuckergehÃ¤ltern um unterschiedliche Weinarten (trockener Rotwein, halbtrockener Rotwein, lieblicher Rotwein, sÃ¼ÃŸer Rotwein) handelt, vermuten wir hier keinen direkten Einfluss auf die QualtitÃ¤t. Stattdessen vermuten wir pro Kategorie Schwankungen in der QualitÃ¤t.
   
 ```{r}
 fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.sugar + 
@@ -142,7 +142,7 @@ fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.su
 ```
 
 ###chlorides
-  Hier vermuten wir einen ähnlichen Zusammenhang wie bei der Variable citric acid. Allgemein tendieren wir bei höheren Mengen zu einem negativen Einfluss.
+  Hier vermuten wir einen Ã¤hnlichen Zusammenhang wie bei der Variable citric acid. Allgemein tendieren wir bei hÃ¶heren Mengen zu einem negativen Einfluss.
   
 ```{r}
 fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.sugar + 
@@ -152,7 +152,7 @@ fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.su
 ```
 
 ###sulfur.dioxide
-  Unserer Vermutung nach wirkt sich der gesamte Anteil an Schwefel und vor allem der Anteil an freien Schwefeldioxiden, negativ auf die Qualität des Weines aus.
+  Unserer Vermutung nach wirkt sich der gesamte Anteil an Schwefel und vor allem der Anteil an freien Schwefeldioxiden, negativ auf die QualitÃ¤t des Weines aus.
   
 ```{r}
 fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.sugar + 
@@ -162,7 +162,7 @@ fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.su
 ```
 
 ###density}
-  Aufgrund unserer geringen Weinkenntniss, können wir uns hier keine Meinung bilden.
+  Aufgrund unserer geringen Weinkenntniss, kÃ¶nnen wir uns hier keine Meinung bilden.
   
 ```{r}
 fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.sugar + 
@@ -172,7 +172,7 @@ fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.su
 ```
 
 ###pH
-  Je niedriger der pH-Wert, desto saurer der Wein. Je höher desto näher liegt der Wein bei der Skala bei neutral. Wir vermuten, dass ein bestimmter Säuregehalt für eine gute Qualität notwendig ist. Deshalb nehmen wir an, dass der Säuregehalt in einer schmalen Bandbreite liegen muss und Ausreißer in beide Richtungen einen negativen Einfluss haben.
+  Je niedriger der pH-Wert, desto saurer der Wein. Je hÃ¶her desto nÃ¤her liegt der Wein bei der Skala bei neutral. Wir vermuten, dass ein bestimmter SÃ¤uregehalt fÃ¼r eine gute QualitÃ¤t notwendig ist. Deshalb nehmen wir an, dass der SÃ¤uregehalt in einer schmalen Bandbreite liegen muss und AusreiÃŸer in beide Richtungen einen negativen Einfluss haben.
   
 ```{r}
 fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.sugar + 
@@ -182,7 +182,7 @@ fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.su
 ```
 
 ###sulphates
-  Hier sehen wir den gleichen Zusammenhang wie bei den Schwefeldioxiden, da die Sulfate sehr eng mit den Schwelfeldioxiden in Beziehung stehen. Der Einfluss könnte daher negativ sein.
+  Hier sehen wir den gleichen Zusammenhang wie bei den Schwefeldioxiden, da die Sulfate sehr eng mit den Schwelfeldioxiden in Beziehung stehen. Der Einfluss kÃ¶nnte daher negativ sein.
   
 ```{r}
 fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.sugar + 
@@ -192,7 +192,7 @@ fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.su
 ```
 
 ###alcohol
-  Ähnlich wie beim pH-Wert sollte auch beim Alkoholgehalt, für eine gute Qualität, der Wert innerhalb einer gewissen Spanne liegen. 
+  Ã„hnlich wie beim pH-Wert sollte auch beim Alkoholgehalt, fÃ¼r eine gute QualitÃ¤t, der Wert innerhalb einer gewissen Spanne liegen. 
   
 ```{r}
 fit <- lm(quality ~ fixed.acidity + volatile.acidity + citric.acid + residual.sugar + 
