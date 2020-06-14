@@ -18,7 +18,7 @@ Die Ausarbeitung widmet sich der Frage,
 
 
 # Datensatz
-## Laden des Datensatzes und Plotten für einen ersten Überblick
+## Laden des Datensatzes und Plotten für einen ersten &Uuml;berblick
 
 ```{r}
 data <- read.csv("winequality-red.csv")
